@@ -16,6 +16,7 @@ async function init() {
       ds_dmdc.map(async (item, index) => {
         item.BanGhi = []
         if (parseInt(item.TotalPage) > 1) {// dữ liệu có phân trang
+          return // tạm return
           let isExist = await insert.getByCategoryCode(item.CategoryCode) //
           if (isExist !== null && isExist !== false && isExist !== undefined) {
             await insert.updateOne(isExist._id.$oid, item)
@@ -71,6 +72,7 @@ let j = schedule.scheduleJob('* * * 1 * *', async function () {// cứ 1 phút c
       ds_dmdc.map(async (item, index) => {
         item.BanGhi = []
         if (parseInt(item.TotalPage) > 1) {// dữ liệu có phân trang
+          return // tạm return
           let isExist = await insert.getByCategoryCode(item.CategoryCode) //
           if (isExist !== null && isExist !== false && isExist !== undefined) {
             await insert.updateOne(isExist._id.$oid, item)
